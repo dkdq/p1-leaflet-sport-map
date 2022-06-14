@@ -2,21 +2,8 @@ const weatherAPI = 'https://api.data.gov.sg/v1/environment/2-hour-weather-foreca
 const fourSquareAPI = 'https://api.foursquare.com/v3/';
 const keyAPI = 'fsq3vW4xIbVcpqi55/KpV8GLD+rU8CR8Etgm2zEfsG5Dwho=';
 
-let map = L.map('map');
-let singapore = [1.2451, 103.8498];
-
-map.setView(singapore, 12);
-
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
-}).addTo(map);
-
 async function markerWeather() {
+    let map = createMap(1.2451, 103.8498);
     let response = await axios.get(weatherAPI);
     let weatherCoordinates = response.data.area_metadata;
     // console.log(response.data.area_metadata);
@@ -70,15 +57,15 @@ async function markerWeather() {
     //     L.marker(coordinate, {icon: iconSunny}).bindPopup(`<h1>${item.name} ${item.weather}</h1>`).addTo(map);
     // }
 
-    let cyclingResponse = await axios.get('data/cycling-path.geojson');
-    // console.log(cyclingResponse.data);
-    let cyclingLayer = L.geoJson(cyclingResponse.data, {
-        'onEachFeature': function (feature, layer) {
-            // console.log(feature);
-            layer.bindPopup(feature.properties.Description);
-        }
-    })
-    cyclingLayer.addTo(map);
+    // let cyclingResponse = await axios.get('data/cycling-path.geojson');
+    // // console.log(cyclingResponse.data);
+    // let cyclingLayer = L.geoJson(cyclingResponse.data, {
+    //     'onEachFeature': function (feature, layer) {
+    //         // console.log(feature);
+    //         layer.bindPopup(feature.properties.Description);
+    //     }
+    // })
+    // cyclingLayer.addTo(map);
 
     // let nparksResponse = await axios.get('data/nparks-tracks.geojson');
     // // console.log(cyclingResponse.data);
@@ -89,6 +76,16 @@ async function markerWeather() {
     //     }
     // })
     // nparksLayer.addTo(map);
+
+    let loopResponse = await axios.get('data/park-connector-loop.geojson');
+    // console.log(cyclingResponse.data);
+    let loopLayer = L.geoJson(loopResponse.data, {
+        'onEachFeature': function (feature, layer) {
+            // console.log(feature);
+            layer.bindPopup(feature.properties.Description);
+        }
+    })
+    loopLayer.addTo(map);
 }
 markerWeather();
 
@@ -106,6 +103,7 @@ async function search() {
             'Authorization': keyAPI
         }
     });
-    console.log(placeResponse.data);
+    // console.log(placeResponse.data);
+    return placeResponse.data;
 }
 search();   
