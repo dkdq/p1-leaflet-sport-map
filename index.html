@@ -19,12 +19,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <input type="text" id="textSearch">
-        <button id="bthSearch">Search</button>
+    <div id="map-container">
+        <div id="search-container">
+            <input type="text" id="txtSearch">
+            <button id="btnSearch">Search</button>
+            <div id="results"></div>
+        </div>
+        <button id="btnShowSearch">Show search</button>
         <div id="map">
-    </div>
-
     </div>
 
      <!--axios cdn-->
@@ -37,9 +39,6 @@
 
     <!-- marker clustering-->
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
-
-    <!-- map js -->
-    <script src="map.js"></script>
 
     <!-- own js -->
     <script src="script.js"></script>

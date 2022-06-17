@@ -1,3 +1,17 @@
 #map {
     height: 180vh;
 }
+
+#map-container {
+    position: relative;
+}
+
+#search-container{
+    position: absolute;
+    z-index: 314159;
+    top: 10px;
+    left: 50px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 25px;
+    /* display:none; */
+}
