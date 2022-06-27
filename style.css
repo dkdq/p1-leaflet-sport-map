@@ -1,17 +1,126 @@
+body {
+    overflow-x: hidden;
+}
+
 #map {
-    height: 180vh;
+    height: 90vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
 }
 
 #map-container {
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+.form-container {
+    padding: 2rem;
+}
+
+/* popup */
+.leaflet-popup-content-wrapper {
+    border-radius: 0;
+    background: whitesmoke;
+    color: darkslategray;
+    border-radius: 5px;
+}
+
+.leaflet-popup-content {
+    border-radius: 30px;
+}
+
+.leaflet-popup-close-button {
+    display: none;
+}
+
+/* search */
 #search-container{
     position: absolute;
     z-index: 314159;
     top: 10px;
-    left: 50px;
+    left: 10px;
     background-color: rgba(255,255,255,0.8);
-    padding: 25px;
-    /* display:none; */
+    padding: 16px;
+    border-radius: 5px;
+}
+
+#btnShowSearch {
+    position: absolute;
+    z-index: 314159;
+    border: 2px solid black;
+    padding: 18px 8px 18px 8px;
+    bottom: 11.2%;
+    left: 13%;
+}
+
+#results {
+    overflow-y: scroll;
+    max-height: 140px;
+}
+
+@keyframes fade-inout {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+#icon {
+    position: absolute;
+    background-color: white;
+    z-index: 314159;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 3px;
+    bottom: 11%;
+    right: 17%;
+    height: 8%;
+    width: 23%;
+    animation: fade-inout 2s infinite alternate;
+}
+
+
+/* large screen above */
+@media (min-width: 767px) {
+    #search-container {
+        display: block;
+    }
+
+    #btnShowSearch {
+        display: none;
+    }
+
+    #search-container  {
+        position: absolute;
+        z-index: 314159;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(255,255,255,0.8);
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .search-result {
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    #results {
+        overflow-y: scroll;
+        max-height: 490px;
+    }
+
+    #icon {
+        position: absolute;
+        background-color: white;
+        z-index: 314159;
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+        bottom: 11%;
+        right: 5%;
+        height: 9%;
+        width: 6%;
+        animation: fade-inout 2s infinite alternate;
+    }
 }
