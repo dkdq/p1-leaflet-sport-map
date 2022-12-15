@@ -15,4 +15,6 @@ A live website of the application can be found [here](https://leafletjs-sport-ma
 - HTML5
 - CSS3
 - JavaScript
+- BootStrap5
+- Leafletjs
 - APIs
